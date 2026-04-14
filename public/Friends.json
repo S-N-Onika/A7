@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "David Kim",
-        "picture": "./David kim.png",
+        "picture": "/David kim.png",
         "email": "david.kim@example.com",
         "days_since_contact": 5,
         "status": "almost due",
@@ -16,7 +16,7 @@
     {
         "id": 2,
         "name": "Emma Wilson",
-        "picture": "./ellipse-1 (1).png",
+        "picture": "/ellipse-1 (1).png",
         "email": "emma.w@example.com",
         "days_since_contact": 15,
         "status": "overdue",
@@ -30,7 +30,7 @@
     {
         "id": 3,
         "name": "Lisa Nakamura",
-        "picture": "./ellipse-1 (2).png",
+        "picture": "/ellipse-1 (2).png",
         "email": "lisa.n@example.com",
         "days_since_contact": 2,
         "status": "on-track",
@@ -44,7 +44,7 @@
     {
         "id": 4,
         "name": "James Wright",
-        "picture": "./ellipse-1 (3).png",
+        "picture": "/ellipse-1 (3).png",
         "email": "j.wright@example.com",
         "days_since_contact": 20,
         "status": "overdue",
@@ -59,7 +59,7 @@
     {
         "id": 5,
         "name": "Sarah Chen",
-        "picture": "./ellipse-1 (4).png",
+        "picture": "/ellipse-1 (4).png",
         "email": "sarah.chen@example.com",
         "days_since_contact": 1,
         "status": "on-track",
@@ -74,7 +74,7 @@
     {
         "id": 6,
         "name": "Marcus Thorne",
-        "picture": "./ellipse-1 (5).png",
+        "picture": "/ellipse-1 (5).png",
         "email": "marcus.t@example.com",
         "days_since_contact": 6,
         "status": "almost due",
@@ -88,7 +88,7 @@
     {
         "id": 7,
         "name": "Elena Rodriguez",
-        "picture": "./ellipse-1 (6).png",
+        "picture": "/ellipse-1 (6).png",
         "email": "elena.r@example.com",
         "days_since_contact": 45,
         "status": "overdue",
@@ -102,7 +102,7 @@
     {
         "id": 8,
         "name": "Tom Baker",
-        "picture": "./ellipse-1 (7).png",
+        "picture": "/ellipse-1 (7).png",
         "email": "tom.b@example.com",
         "days_since_contact": 10,
         "status": "on-track",

@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import Navbar from "./component/Navbar";
 import Banner from "./component/Banner";
 import FriendsCards from "./component/FriendsCards";
 import Footer from "./component/Footer";
+import FriendDetails from "./component/FriendsDetails";
+
 
 const getApi = async () => {
   const res = await fetch("/Friends.json");
@@ -42,12 +45,16 @@ const NotFound = () => (
 function App() {
   return (
     <BrowserRouter>
+
+      <Toaster />
+
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/friend/:id" element={<FriendDetails />} />
       </Routes>
 
       <Footer />

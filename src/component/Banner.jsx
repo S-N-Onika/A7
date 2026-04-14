@@ -5,7 +5,7 @@ const Banner = () => {
         { label: "Total Friends", value: "8" },
         { label: "On Track", value: "3" },
         { label: "Need Attention", value: "5" },
-        { label: "Interactions This Month", value: "10" }
+        { label: "Interactions This Month", value: "9" }
     ];
 
     return (

@@ -32,7 +32,17 @@ const Home = () => {
   );
 };
 
-const Timeline = () => <h1 className="p-6 text-2xl">Timeline Page</h1>;
+const Timeline = () => {
+  const [Component, setComponent] = useState(null);
+
+  useEffect(() => {
+    import("./component/Timeline").then((module) => {
+      setComponent(() => module.default);
+    });
+  }, []);
+
+  return Component ? <Component /> : <div>Loading...</div>;
+};
 const Stats = () => <h1 className="p-6 text-2xl">Stats Page</h1>;
 const NotFound = () => (
   <div className="min-h-[calc(100vh-80px)] flex place-content-center items-center justify-center">

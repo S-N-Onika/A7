@@ -60,7 +60,7 @@ const FriendCard = ({ friend }) => {
 
 const FriendsCards = ({ friends = [] }) => {
     return (
-        <section className="bg-[#F8FAFC] py-10 px-4 md:px-20 lg:px-60">
+        <section className="bg-[#F8FAFC] pb-20 px-4 md:px-20 lg:px-60">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-2xl font-bold text-[#0F172A] mb-10">
                     Your Friends

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./component/Navbar";
 import Banner from "./component/Banner";
 import FriendsCards from "./component/FriendsCards";
+import Footer from "./component/Footer";
 
 const getApi = async () => {
   const res = await fetch("/Friends.json");
@@ -48,8 +49,10 @@ function App() {
         <Route path="/stats" element={<Stats />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 }
 
-export default App
+export default App;

@@ -2,10 +2,10 @@ import { LuPlus } from "react-icons/lu";
 
 const Banner = () => {
     const summaryCards = [
-        { label: "Total Friends", value: "10" },
+        { label: "Total Friends", value: "8" },
         { label: "On Track", value: "3" },
-        { label: "Need Attention", value: "6" },
-        { label: "Interactions This Month", value: "12" }
+        { label: "Need Attention", value: "5" },
+        { label: "Interactions This Month", value: "10" }
     ];
 
     return (

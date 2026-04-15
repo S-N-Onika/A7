@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const FriendshipAnalytics = () => {
     const [chartData] = useState(() => {
@@ -13,8 +13,8 @@ const FriendshipAnalytics = () => {
 
         return [
             { name: 'Call', value: counts['Call'] || 0, color: '#244d3f' },
-            { name: 'Text', value: counts['Text'] || 0, color: '#8B5CF6' },
-            { name: 'Video', value: counts['Video'] || 0, color: '#4ADE80' }
+            { name: 'Text', value: counts['Text'] || 0, color: '#9B1CF6' },
+            { name: 'Video', value: counts['Video'] || 0, color: '#50C874' }
         ];
     });
 
@@ -44,6 +44,10 @@ const FriendshipAnalytics = () => {
                                         <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
                                     ))}
                                 </Pie>
+                                <Tooltip
+                                    formatter={(value, name) => [`${value}`, name]}
+                                    separator=": "
+                                />
                                 <Legend
                                     verticalAlign="bottom"
                                     align="center"

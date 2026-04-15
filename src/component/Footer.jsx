@@ -3,7 +3,7 @@ const Footer = () => {
         <footer className="bg-[#1B4332] text-white py-12 px-4 md:px-20 lg:px-61.25">
             <div className="max-w-400 mx-auto text-center lg:px-20">
 
-                <h2 className="text-6xl font-bold mb-3 tracking-tight">KeenKeeper</h2>
+                <img src="/assets/logo-xl.png" alt="logo" className="mx-auto mb-3"/>
 
                 <p className="text-gray-300 text-sm mx-auto mb-8">
                     Your personal shelf of meaningful connections. Browse, track, and nurture the relationships that matter most.

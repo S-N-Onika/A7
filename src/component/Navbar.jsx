@@ -15,9 +15,7 @@ const Navbar = () => {
                 <div className="flex flex-row justify-between items-center h-auto sm:h-16 py-3 sm:py-0 gap-3 sm:gap-0">
 
                     <div className="shrink-0">
-                        <h1 className="text-2xl font-bold text-[#244d3f]">
-                            <span className="text-[#1f2937]">Keen</span>Keeper
-                        </h1>
+                        <img src="/assets/logo.png" alt="logo" />
                     </div>
 
                     <div className="flex flex-row items-center gap-2 sm:gap-4">

@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { HiOutlineTrash } from 'react-icons/hi';
+import { HiOutlineTrash, HiOutlineSearch } from 'react-icons/hi';
 
 const Timeline = () => {
     const [interactions, setInteractions] = useState(() => {
         return JSON.parse(localStorage.getItem('timeline') || '[]');
     });
     const [filter, setFilter] = useState('All');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [sortOrder, setSortOrder] = useState('newest');
 
     useEffect(() => {
         const update = () => {
@@ -25,9 +27,15 @@ const Timeline = () => {
         }
     };
 
-    const filteredData = filter === 'All'
-        ? interactions
-        : interactions.filter(item => item.type === filter);
+    const processedData = interactions
+        .filter(item => {
+            const matchesFilter = filter === 'All' || item.type === filter;
+            const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
+            return matchesFilter && matchesSearch;
+        })
+        .sort((a, b) => {
+            return sortOrder === 'newest' ? b.id - a.id : a.id - b.id;
+        });
 
     const getIcon = (type) => {
         const iconPath = type === 'Call' ? '/assets/call.png' : type === 'Text' ? '/assets/text.png' : '/assets/video.png';
@@ -35,14 +43,14 @@ const Timeline = () => {
     };
 
     return (
-        <div className="bg-[#f8fafc] h-auto py-20 px-4 md:px-20 lg:px-60">
+        <div className="bg-[#f8fafc] min-h-screen py-20 px-4 md:px-20 lg:px-60">
             <div className="max-w-400 mx-auto">
 
                 <div className="flex justify-between items-end mb-8">
                     <div>
                         <h2 className="text-4xl font-bold text-[#0F172A]">Timeline</h2>
-                        <p className="text-gray-400 text-xs mt-2 font-medium uppercase tracking-widest">
-                            Showing {interactions.length} interactions
+                        <p className="text-gray-400 text-sm mt-2 font-medium">
+                            Showing {processedData.length} interactions
                         </p>
                     </div>
 
@@ -56,32 +64,51 @@ const Timeline = () => {
                     )}
                 </div>
 
-                <div className="mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+
+                    <div className="relative md:col-span-1">
+                        <HiOutlineSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search by friend or type..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full bg-white border border-gray-200 pl-10 pr-4 py-2 rounded-md text-sm focus:outline-none focus:border-[#244d3f] shadow-sm"
+                        />
+                    </div>
+
                     <select
                         onChange={(e) => setFilter(e.target.value)}
-                        className="bg-white border border-gray-200 text-gray-600 text-md font-bold py-2 px-3 rounded-md focus:outline-none shadow-sm cursor-pointer"
+                        className="bg-white border border-gray-200 text-gray-600 text-sm font-bold py-2 px-3 rounded-md focus:outline-none shadow-sm cursor-pointer"
                     >
-                        <option value="All">Filter timeline</option>
-                        <option value="Call">Calls Only</option>
-                        <option value="Text">Texts Only</option>
-                        <option value="Video">Video Only</option>
+                        <option value="All">All</option>
+                        <option value="Call">Calls</option>
+                        <option value="Text">Texts</option>
+                        <option value="Video">Video</option>
+                    </select>
+
+                    <select
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                        className="bg-white border border-gray-200 text-gray-600 text-sm font-bold py-2 px-3 rounded-md focus:outline-none shadow-sm cursor-pointer"
+                    >
+                        <option value="newest">Newest To Oldest</option>
+                        <option value="oldest">Oldest To Newest</option>
                     </select>
                 </div>
 
                 <div className="space-y-4">
-                    {filteredData.length > 0 ? filteredData.map((item) => (
+                    {processedData.length > 0 ? processedData.map((item) => (
                         <div
                             key={item.id}
-                            className="bg-white p-5 rounded-xl border border-gray-50 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-6 hover:border-gray-200 transition-all cursor-default"
+                            className="bg-white p-5 rounded-xl border border-gray-50 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-6 hover:border-[#244d3f]/20 transition-all cursor-default group"
                         >
                             <div className="shrink-0">
                                 {getIcon(item.type)}
                             </div>
 
-                            <div>
-
+                            <div className="flex-1">
                                 <h4 className="text-[16px] font-semibold text-gray-800">
-                                    
                                     <span className="text-[#244d3f]">
                                         {item.title.split(' ')[0]}
                                     </span>
@@ -89,19 +116,18 @@ const Timeline = () => {
                                         {item.title.substring(item.title.indexOf(' '))}
                                     </span>
                                 </h4>
-
                                 <p className="text-[12px] text-gray-400 font-medium mt-1">
                                     {item.date}
                                 </p>
                             </div>
                         </div>
-                    )) 
-                    : 
-                    (
-                        <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-gray-100">
-                            <p className="text-gray-400 italic text-md">No interactions logged yet.</p>
-                        </div>
-                    )}
+                    ))
+                        :
+                        (
+                            <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-gray-100">
+                                <p className="text-gray-400 italic text-md">No matching interactions found.</p>
+                            </div>
+                        )}
                 </div>
 
             </div>

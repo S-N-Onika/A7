@@ -57,7 +57,7 @@ const Timeline = () => {
                     {interactions.length > 0 && (
                         <button
                             onClick={handleClearAll}
-                            className="flex items-center gap-2 px-4 py-2 border border-red-200 text-red-500 text-[12px] font-bold rounded-lg hover:bg-red-500 hover:text-white transition-all uppercase tracking-widest"
+                            className="flex items-center gap-2 px-2 py-1 border border-red-200 text-red-500 text-[12px] font-bold rounded-lg hover:bg-red-500 hover:text-white transition-all"
                         >
                             <HiOutlineTrash size={14} /> Clear All History
                         </button>
@@ -122,8 +122,8 @@ const Timeline = () => {
                             </div>
                         </div>
                     ))
-                        :
-                        (
+                    :
+                    (
                             <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-gray-100">
                                 <p className="text-gray-400 italic text-md">No matching interactions found.</p>
                             </div>

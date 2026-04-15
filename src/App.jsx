@@ -43,7 +43,17 @@ const Timeline = () => {
 
   return Component ? <Component /> : <div>Loading...</div>;
 };
-const Stats = () => <h1 className="p-6 text-2xl">Stats Page</h1>;
+const Stats = () => {
+  const [Component, setComponent] = useState(null);
+
+  useEffect(() => {
+    import("./component/Stats").then((module) => {
+      setComponent(() => module.default);
+    });
+  }, []);
+
+  return Component ? <Component /> : <div>Loading...</div>;
+};
 const NotFound = () => (
   <div className="min-h-[calc(100vh-80px)] flex place-content-center items-center justify-center">
     <h1 className="text-6xl font-bold text-center text-[#244d3f] capitalize ">

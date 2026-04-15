@@ -35,7 +35,7 @@ const Timeline = () => {
     };
 
     return (
-        <div className="bg-[#f8fafc] min-h-screen py-12 px-4 md:px-20 lg:px-60">
+        <div className="bg-[#f8fafc] h-auto py-20 px-4 md:px-20 lg:px-60">
             <div className="max-w-400 mx-auto">
 
                 <div className="flex justify-between items-end mb-8">

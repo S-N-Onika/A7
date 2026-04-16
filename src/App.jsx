@@ -10,28 +10,19 @@ import FriendDetails from "./component/FriendsDetails";
 
 const Home = () => {
   const [friends, setFriends] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
-      const res = await fetch("/Friends.json");
-      const data = await res.json();
-      setFriends(data || []);
-      setLoading(false);
+      try {
+        const res = await fetch("/Friends.json");
+        const data = await res.json();
+        setFriends(data || []);
+      } catch (error) {
+        console.error("Failed to fetch friends", error);
+      }
     };
-
     loadData();
   }, []);
-
-  if (loading)
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-10 h-10 border-4 border-gray-300 border-t-[#244d3f] rounded-full animate-spin mx-auto"></div>
-          <p className="mt-3 text-2xl text-[#244d3f]">Loading...</p>
-        </div>
-      </div>
-    );
 
   return (
     <>
@@ -50,17 +41,10 @@ const Timeline = () => {
     });
   }, []);
 
-return Component ? (
-  <Component />
-) : (
-  <div className="h-screen flex items-center justify-center">
-    <div className="text-center">
-      <div className="w-10 h-10 border-4 border-gray-300 border-t-[#244d3f] rounded-full animate-spin mx-auto"></div>
-      <p className="mt-3 text-2xl text-[#244d3f]">Loading...</p>
-    </div>
-  </div>
-);
+  return Component ? <Component /> : null;
 };
+
+
 const Stats = () => {
   const [Component, setComponent] = useState(null);
 
@@ -70,17 +54,9 @@ const Stats = () => {
     });
   }, []);
 
-return Component ? (
-  <Component />
-) : (
-  <div className="h-screen flex items-center justify-center">
-    <div className="text-center">
-      <div className="w-10 h-10 border-4 border-gray-300 border-t-[#244d3f] rounded-full animate-spin mx-auto"></div>
-      <p className="mt-3 text-2xl text-[#244d3f]">Loading...</p>
-    </div>
-  </div>
-);
+  return Component ? <Component /> : null;
 };
+
 const NotFound = () => {
   const baseStyle = "flex items-center gap-2 px-4 py-2 rounded-lg transition-all";
   const activeStyle = "bg-[#244d3f] text-white";

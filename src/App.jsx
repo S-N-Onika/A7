@@ -118,8 +118,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/stats" element={<Stats />} />
-        <Route path="*" element={<NotFound />} />
         <Route path="/friend/:id" element={<FriendDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />
